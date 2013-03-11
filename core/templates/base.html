@@ -1,0 +1,19 @@
+<head>
+    <meta charset="utf-8" />
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    
+    <link type="text/css" rel="stylesheet" href="/assets/css/slowloris.css" />
+</head>
+
+<body>
+    {% block content %}
+    
+    {% comment %}
+    google analytics goes here
+    can't set up code until we've figured out hosting
+    {% endcomment %}
+    
+    {% endblock %}
+</body>
