@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 
 from slow_loris.core.views import home, submit, flag
 
@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'slow_loris.views.home', name='home'),
     url(r'^$', home, name='home'),
     url(r'^submit/$', submit, name='submit'),
-    url(r'^about$', direct_to_template, {'template': 'about.html'}, name='about'),
+    url(r'^about$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^flag/(?P<suggestion_id>\d*)/$', flag, name='flag'),
     
     # Uncomment the admin/doc line below to enable admin documentation:

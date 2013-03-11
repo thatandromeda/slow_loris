@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>What's this?</h2>
+
+<p>This is a site that tells you all sorts of ways (not just committee appointments!) you can get involved with LITA, while feeding your craving for adorable baby animals.</p>
+
+<h2>What's LITA?</h2>
+
+<p>LITA is the <a href="http://www.ala.org/lita">Library & Information Technology Association</a>, a division of the American Library Association.
+
+<h2>What's the tech stack?</h2>
+
+<p>Written in <a href="https://www.djangoproject.com/">Django</a>, a web framework for Python.  Deployed to <a href="http://www.heroku.com/">Heroku</a>.  Code hosted on <a href="https://github.com/">Github</a>.</p>
+
+<h2>Who built it?</h2>
+
+<p>This site was built by <a href="http://andromedayelton.com">Andromeda Yelton</a>, with help from [ coconspirators to be named later ].  Maybe it will also have been built by you?  You can <a href="{% url 'submit' %}">submit new ways to get involved</a>.  Know how to improve the code?  <a href="https://github.com/thatandromeda/slow_loris">Pull requests welcome.</a></p>
+
+<p>While I am active in LITA, this site is not affiliated with the association in any way.</p>
+
+<h2>Just give me another cute baby animal.</h2>
+
+<p><a href="{% url 'home' %}">Okay.</a></p>
+
+{% endblock %}

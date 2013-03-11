@@ -37,10 +37,10 @@
     <h2><a href="/">Give me another!</a></h2>
 
     <br /><br />
-    <h2><a href="{% url submit %}">I want to submit one!</a></h2>
+    <h2><a href="{% url 'submit' %}">I want to submit one!</a></h2>
 
     <br /><br />
-    <form method="POST" id="flag" action="{% url flag suggestion.id %}" style="display:none;">
+    <form method="POST" id="flag" action="{% url 'flag' suggestion.id %}" style="display:none;">
         {% csrf_token %}
         <input type="submit" value="Flag this">
     </form>
