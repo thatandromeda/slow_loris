@@ -2,9 +2,9 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
 
-from slow_loris.core.models import Suggestion, Intro, Picture
-from slow_loris.core.forms import SuggestionForm
-from slow_loris.settings import MAX_FLAGS
+from core.models import Suggestion, Intro, Picture
+from core.forms import SuggestionForm
+from settings import MAX_FLAGS
 
 def get_random(my_model, filter=False, limit='', criterion=''):
     from random import randint

@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import TemplateView
 
-from slow_loris.core.views import home, submit, flag
+from core.views import home, submit, flag
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin

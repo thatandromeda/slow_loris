@@ -3,3 +3,5 @@ projectplan
 local_settings.py
 .gitignore~
 database.db
+venv
+*.pyc

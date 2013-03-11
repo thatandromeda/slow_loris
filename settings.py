@@ -7,7 +7,7 @@ TEMPLATE_DEBUG = DEBUG
 PROJECT_DIR = dirname(dirname(realpath(__file__)))
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Andromeda Yelton', 'andromeda.yelton@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -100,7 +100,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'slow_loris.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'slow_loris.core',
+    'core',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -154,4 +154,10 @@ try:
 except ImportError:
     pass
 
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
