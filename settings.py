@@ -85,9 +85,6 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'd7^pugzqtu2+bc1v49gdzcat)5tsq@!fs9vch^&qe&2=907h8^'
-
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -150,6 +147,11 @@ LOGGING = {
 }
 
 # how many times a suggestion can be flagged before it's suppressed from display
-MAX_FLAGS = 2
+MAX_FLAGS = 5
+
+try:
+    from local_settings import SECRET_KEY
+except ImportError:
+    pass
 
 

@@ -1,16 +1,33 @@
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from django.views.decorators.http import require_POST
 
-from random import randint
-
-from slow_loris.core.models import Suggestion, Intro
+from slow_loris.core.models import Suggestion, Intro, Picture
 from slow_loris.core.forms import SuggestionForm
 from slow_loris.settings import MAX_FLAGS
+
+def get_random(my_model, filter=False, limit='', criterion=''):
+    from random import randint
+    
+    if filter:
+        my_queryset = my_model.objects.filter(**{limit + '__lte' : criterion})
+    else:
+        my_queryset = my_model.objects.all()
+    
+    count = my_queryset.count()
+    try:
+        return my_queryset.all()[randint(0, count - 1)]
+    except:
+        """
+        make sure to seed the db with something you trust is good
+        even if users flag it
+        """
+        return my_model.objects.filter(pk=1)[0]
 
 def submit(request):
     if request.method == 'POST':
         form = SuggestionForm(request.POST)
         if form.is_valid():
-            # update db here
             s = Suggestion()
             text = form.cleaned_data['text']
             if text[-1] == '?':
@@ -31,14 +48,26 @@ def submit(request):
     })
         
 def home(request):
-    intro_count = Intro.objects.count()
-    intro = Intro.objects.all()[randint(0, intro_count - 1)]
-    
-    suggestions = Suggestion.objects.filter(flag__lte=MAX_FLAGS)
-    suggestion_count = suggestions.count()
-    suggestion = suggestions[randint(0, suggestion_count - 1)]
+    intro = get_random(Intro)
+    suggestion = get_random(Suggestion,
+        filter=True,
+        limit='flag', 
+        criterion=MAX_FLAGS
+    )
+    picture = get_random(Picture)
     
     return render(request, 'home.html', {
         'intro': intro,
         'suggestion': suggestion,
+        'picture': picture,
     })
+    
+def flag(request, suggestion_id):
+    if request.is_ajax():
+        suggestion = Suggestion.objects.get(pk=suggestion_id)
+        suggestion.flag += 1
+        suggestion.save()
+        return HttpResponse("suggestion flagged")
+    else:
+        return Http404
+    

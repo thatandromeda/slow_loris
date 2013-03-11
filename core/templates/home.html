@@ -1,20 +1,47 @@
 {% extends "base.html" %}
 
 {% block title %}
+{% endblock %}
 
+{% block extra_head %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var form = $('#flag');
+        form.show();
+        form.submit(function(e) {
+            e.preventDefault();
+            //$(form + 'input').attr('disabled','disabled');
+            jQuery.ajax({
+                url: form.attr('action')
+            }).done(function(data) {
+                $(form).html("hooray");
+            });
+        });
+    });
+</script>
 {% endblock %}
 
 {% block content %}
-    {{ intro.text }}<br /><br />
+    <h1>{{ intro.text }}</h1>
 
-    [ADORABLE BABY ANIMAL PIC GOES HERE]
+    <div class="adorable_baby_animal">
+        <img src="{{ picture.image_link }}">
+        <p class="attribution"><a href="{{ picture.attribution_link }}">{{ picture.attribution }}</a>
+    </div>
+    <br />
 
-    <br /><br />
-    <a href="{{ suggestion.link }}">{{ suggestion.text }}</a>
+    <h1><a href="{{ suggestion.link }}">{{ suggestion.text }}</a></h1>
     
     <br /><br />
-    <a href="/">Give me another!</a>
+    <h2><a href="/">Give me another!</a></h2>
 
     <br /><br />
-    <a href="{% url submit %}">I want to submit one!</a>
+    <h2><a href="{% url submit %}">I want to submit one!</a></h2>
+
+    <br /><br />
+    <form method="POST" id="flag" action="{% url flag suggestion.id %}" style="display:none;">
+        {% csrf_token %}
+        <input type="submit" value="Flag this">
+    </form>
 {% endblock %}
