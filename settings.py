@@ -1,5 +1,6 @@
 # Django settings for slow_loris project.
 from os.path import dirname, realpath, join
+from os import environ
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -155,7 +156,7 @@ try:
 except ImportError:
     pass
 
-if not os.environ.get('LOCAL_DEV'):
+if not environ.get('LOCAL_DEV'):
     # Parse database configuration from $DATABASE_URL
     import dj_database_url
     DATABASES['default'] =  dj_database_url.config()
