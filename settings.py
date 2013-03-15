@@ -154,9 +154,6 @@ MAX_FLAGS = 5
 # Need this to prevent 500 errors when debug=False in Django 1.5
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'salty-crag-1571.herokuapp.com']
 
-# more Django 1.5 upgrading
-WSGI_APPLICATION = "slow_loris.wsgi.application"
-
 try:
     from local_settings import SECRET_KEY
 except ImportError:
