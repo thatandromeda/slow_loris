@@ -2,7 +2,7 @@
 from os.path import dirname, realpath, join
 from os import environ
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_DIR = dirname(dirname(realpath(__file__)))
@@ -151,11 +151,16 @@ LOGGING = {
 # how many times a suggestion can be flagged before it's suppressed from display
 MAX_FLAGS = 5
 
+# otherwise it fails when you flip Debug off
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', 'awesome.herokuapp.com']
+
 try:
     from local_settings import SECRET_KEY
 except ImportError:
     pass
 
+# don't want to shave dj_database_url yaks on localhost; only use on heroku
+# LOCAL_DEV is set to true in ~/.bashrc
 if not environ.get('LOCAL_DEV'):
     # Parse database configuration from $DATABASE_URL
     import dj_database_url
