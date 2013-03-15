@@ -2,7 +2,7 @@
 from os.path import dirname, realpath, join
 from os import environ
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_DIR = dirname(dirname(realpath(__file__)))
@@ -60,7 +60,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = join(PROJECT_DIR, "slow_loris", "core", "static"),
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
