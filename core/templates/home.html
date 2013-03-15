@@ -51,7 +51,7 @@
         <div class="span4">
             <form method="POST" id="flag" action="{% url 'flag' suggestion.id %}" style="display:none;">
                 {% csrf_token %}
-                <button type="submit" class="btn">Flag this</button>
+                <button type="submit" class="btn">Report an error</button>
             </form>
         </div>
     </div>
