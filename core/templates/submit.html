@@ -4,13 +4,42 @@
     Submitterator
 {% endblock %}
 
+{% block extra_head %}
+    <link type="text/css" rel="stylesheet" href="/static/forms.min.css" />
+{% endblock %}
+
+
 {% block content %}
     {% if thanks %}
         Thank you for submitting a suggestion.
     {% endif %}
-    <form action="" method="post">
+    <form action="" method="post" class="form-horizontal">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="control-group error">
+                    <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
+                    <div class="controls">
+                        {{ field }}
+                        <span class="help-inline">{{ field.errors }}</span>
+                        {% if forloop.last %}
+                            <br />
+                            <button type="submit" class="btn">Submit</button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="control-group">
+                    <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
+                    <div class="controls">
+                        {{ field }}
+                        {% if forloop.last %}
+                            <br />
+                            <button type="submit" class="btn">Submit</button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </form>
 {% endblock %}
