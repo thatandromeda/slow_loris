@@ -60,7 +60,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = join(PROJECT_DIR, "slow_loris", "core", "static")
+STATIC_ROOT = join(PROJECT_DIR, "slow_loris", "static")
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -151,16 +151,17 @@ LOGGING = {
 # how many times a suggestion can be flagged before it's suppressed from display
 MAX_FLAGS = 5
 
-# otherwise it fails when you flip Debug off
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', 'awesome.herokuapp.com']
+# Need this to prevent 500 errors when debug=False in Django 1.5
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'salty-crag-1571.herokuapp.com']
+
+# more Django 1.5 upgrading
+WSGI_APPLICATION = "slow_loris.wsgi.application"
 
 try:
     from local_settings import SECRET_KEY
 except ImportError:
     pass
 
-# don't want to shave dj_database_url yaks on localhost; only use on heroku
-# LOCAL_DEV is set to true in ~/.bashrc
 if not environ.get('LOCAL_DEV'):
     # Parse database configuration from $DATABASE_URL
     import dj_database_url
