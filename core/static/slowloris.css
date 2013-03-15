@@ -1,22 +1,11 @@
-/* Typography */
-
-body {
-    font-size: 14px;
-    line-height: 20px;
-}
-
-body, h1, h2 {
-    font-family: 'Helvetica', sans-serif;
-}
-
+/* Bootstrap overrides */
 h1 {
-    font-size: 60px;
+    font-size: 45px;
     font-weight: 800px;
-    line-height: 80px;
+    line-height: 60px;
     text-transform: uppercase;
     color: black;
-    bottom-margin: 25px;
-    text-align: center;
+    margin-bottom: 30px;
 }
 
 h2 {
@@ -25,27 +14,12 @@ h2 {
     bottom-margin: 10px;
 }
 
-p {
-    bottom-margin: 10px;
+button {
+    margin: 10px auto;
+    font-family: 'Helvetiva', sans-serif;
 }
 
-p.attribution {
+.flagged {
+    font-weight: normal;
     font-size: 12px;
-    text-align:center;
-}
-
-a {
-    color: #1882d9;
-}
-
-a:hover {
-    color: #faa82d;
-}
-
-/* Layout */
-div.adorable_baby_animal img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 480px;
 }
