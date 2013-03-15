@@ -4,8 +4,8 @@
         {% block title %}{% endblock %}
     </title>
     
-    <link type="text/css" rel="stylesheet" href="/static/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="/static/slowloris.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}slowloris.css" />
     {% block extra_head %}
     {% endblock %}
 </head>
