@@ -8,6 +8,15 @@ h1 {
     margin-bottom: 30px;
 }
 
+h1.title {
+    font-family: 'georgia';
+    text-transform: lowercase;
+    color: #faa82d;
+    font-size: 35px;
+    padding-bottom: 10px;
+    border-bottom: 5px solid #faa82d;
+}
+
 h2 {
     font-size: 20px;
     text-transform: uppercase;
@@ -22,4 +31,16 @@ button {
 .flagged {
     font-weight: normal;
     font-size: 12px;
+}
+
+.home_hr {
+    color: #faa82d;
+    background-color: #faa82d;
+    height: 5px;
+}
+
+footer {
+    margin-top: 30px;
+    border-top: 5px solid #ccc;
+    padding-top: 10px;
 }
