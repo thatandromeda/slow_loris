@@ -2,7 +2,7 @@
 from os.path import dirname, realpath, join
 from os import environ
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_DIR = dirname(dirname(realpath(__file__)))
