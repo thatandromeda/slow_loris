@@ -11,7 +11,11 @@
 
 {% block content %}
     {% if thanks %}
-        Thank you for submitting a suggestion.
+        <blockquote>Thank you for submitting a suggestion.  You can submit another, or <a href="{% url 'home' %}">go back to the cute baby animals</a>.</blockquote>
+    {% else %}
+        <h2>Submit a way to get involved with LITA!</h2>
+        <i>This doesn't support submitting baby animal pics. Sorry :( You can <a href="mailto:andromeda.yelton@gmail.com?subject=adorable%20baby%20animal%20pics">email me</a> those, though.</a></i>
+        <br/><br/><br/>
     {% endif %}
     <form action="" method="post" class="form-horizontal">
         {% csrf_token %}
