@@ -153,7 +153,7 @@ try:
     from local_settings import SECRET_KEY
 except ImportError:
     pass
-
+    
 # settings which differ between local and production
 if environ.get('LOCAL_DEV'):
     # how many times a suggestion can be flagged before it's suppressed from display
