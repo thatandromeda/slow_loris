@@ -2,9 +2,6 @@
 from os.path import dirname, realpath, join
 from os import environ
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 PROJECT_DIR = dirname(dirname(realpath(__file__)))
 
 ADMINS = (
@@ -145,6 +142,9 @@ except ImportError:
 
 # settings which differ between local and production
 if environ.get('LOCAL_DEV'):
+    DEBUG=True
+    TEMPLATE_DEBUG = DEBUG
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -163,7 +163,6 @@ if environ.get('LOCAL_DEV'):
 
     # Need this to prevent 500 errors when debug=False in Django 1.5
     ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
-
 else:
     # Parse database configuration from $DATABASE_URL
     import dj_database_url
@@ -173,6 +172,7 @@ else:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
     DEBUG=False
+    TEMPLATE_DEBUG = DEBUG
     
     # using Django's staticfiles server, but needs to reflect Heroku
     # directory structure
