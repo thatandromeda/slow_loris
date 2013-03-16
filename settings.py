@@ -178,5 +178,5 @@ else:
     
     MAX_FLAGS = 1
     
-    ALLOWED_HOSTS = ['salty-crag-1571.herokuapp.com']
+    ALLOWED_HOSTS = ['salty-crag-1571.herokuapp.com', 'babyanimalslovelita.org', 'www.babyanimalslovelita.org']
     
