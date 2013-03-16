@@ -2,6 +2,9 @@
 from os.path import dirname, realpath, join
 from os import environ
 
+DEBUG=True
+TEMPLATE_DEBUG = DEBUG
+
 PROJECT_DIR = dirname(dirname(realpath(__file__)))
 
 ADMINS = (
@@ -58,8 +61,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-
-# see below in LOCAL_DEV switch area
+STATIC_ROOT = join(PROJECT_DIR, "slow_loris", "static")
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -154,11 +156,6 @@ except ImportError:
 
 # settings which differ between local and production
 if environ.get('LOCAL_DEV'):
-    DEBUG=True
-    TEMPLATE_DEBUG = DEBUG
-
-    STATIC_ROOT = join(PROJECT_DIR, "slow_loris", "static")
-
     # how many times a suggestion can be flagged before it's suppressed from display
     MAX_FLAGS = 5
 
