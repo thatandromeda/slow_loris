@@ -11,7 +11,7 @@ admin review page
                 <blockquote>{{ suggestion.flag }}</blockquote>
                 Text: {{ suggestion.text }}<br/>
                 Link: <a href="{{ suggestion.link }}">{{ suggestion.link }}</a><br/>
-                <a href="http://0.0.0.0:8000/admin/core/suggestion/{{ suggestion.id }}">Fix it</a>
+                <a href="/admin/core/suggestion/{{ suggestion.id }}">Fix it</a>
                 {% if not forloop.last %}
                     <hr />
                 {% endif %}
