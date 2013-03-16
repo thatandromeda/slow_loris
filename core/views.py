@@ -69,5 +69,13 @@ def flag(request, suggestion_id):
         suggestion.save()
         return HttpResponse("suggestion flagged")
     else:
-        return Http404
-    
+        raise Http404
+
+def review(request):
+    if request.user.is_staff:
+        flagged_suggestions = Suggestion.objects.filter(flag__gte=MAX_FLAGS).order_by('-flag')
+        return render(request, 'review.html', {
+            'flagged_suggestions': flagged_suggestions
+        })
+    else:
+        raise Http404

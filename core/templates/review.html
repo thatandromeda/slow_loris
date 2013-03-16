@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+admin review page
+{% endblock %}
+
+{% block content %}
+    {% if flagged_suggestions %}
+        {% for suggestion in flagged_suggestions %}
+            <div class="row-fluid">
+                <blockquote>{{ suggestion.flag }}</blockquote>
+                Text: {{ suggestion.text }}<br/>
+                Link: <a href="{{ suggestion.link }}">{{ suggestion.link }}</a><br/>
+                <a href="http://0.0.0.0:8000/admin/core/suggestion/{{ suggestion.id }}">Fix it</a>
+                {% if not forloop.last %}
+                    <hr />
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="row-fluid">
+            <p>Hooray, all clean!</p>
+        </div>
+    {% endif %}
+{% endblock %}

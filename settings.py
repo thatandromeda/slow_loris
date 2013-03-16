@@ -169,3 +169,5 @@ if not environ.get('LOCAL_DEV'):
     
     DEBUG=False
     STATIC_ROOT = join(PROJECT_DIR, "app", "static")
+    
+    MAX_FLAGS = 1
