@@ -13,17 +13,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': join(PROJECT_DIR, 'slow_loris', 'database.db'),                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -60,7 +49,8 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = join(PROJECT_DIR, "slow_loris", "static")
+
+# see below in LOCAL_DEV switch area
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -148,18 +138,33 @@ LOGGING = {
     }
 }
 
-# how many times a suggestion can be flagged before it's suppressed from display
-MAX_FLAGS = 5
-
-# Need this to prevent 500 errors when debug=False in Django 1.5
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'salty-crag-1571.herokuapp.com']
-
 try:
     from local_settings import SECRET_KEY
 except ImportError:
     pass
 
-if not environ.get('LOCAL_DEV'):
+# settings which differ between local and production
+if environ.get('LOCAL_DEV'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': join(PROJECT_DIR, 'slow_loris', 'database.db'),                      # Or path to database file if using sqlite3.
+            'USER': '',                      # Not used with sqlite3.
+            'PASSWORD': '',                  # Not used with sqlite3.
+            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        }
+    }
+    
+    STATIC_ROOT = join(PROJECT_DIR, "slow_loris", "static")
+
+    # how many times a suggestion can be flagged before it's suppressed from display
+    MAX_FLAGS = 5
+
+    # Need this to prevent 500 errors when debug=False in Django 1.5
+    ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
+
+else:
     # Parse database configuration from $DATABASE_URL
     import dj_database_url
     DATABASES['default'] =  dj_database_url.config()
@@ -168,6 +173,12 @@ if not environ.get('LOCAL_DEV'):
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
     DEBUG=False
+    
+    # using Django's staticfiles server, but needs to reflect Heroku
+    # directory structure
     STATIC_ROOT = join(PROJECT_DIR, "app", "static")
     
     MAX_FLAGS = 1
+    
+    ALLOWED_HOSTS = ['salty-crag-1571.herokuapp.com']
+    
