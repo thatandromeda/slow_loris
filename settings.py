@@ -168,6 +168,3 @@ if not environ.get('LOCAL_DEV'):
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
     DEBUG=False
-    
-    STATIC_ROOT = join(PROJECT_DIR, "app", "static")
-
