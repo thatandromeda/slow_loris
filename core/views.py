@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
@@ -35,6 +36,12 @@ def submit(request):
             s.text = text
             s.link = form.cleaned_data['link']
             s.save()
+            
+            send_mail('New suggestion at babyanimalslovelita',
+                'http://www.babyanimalslovelita.org/admin/core/suggestion/' + str(s.id),
+                'andromeda.yelton@gmail.com',
+                ['andromeda.yelton+slowloris@gmail.com'],
+                fail_silently=False)
             
             newform = SuggestionForm()
             return render(request, 'submit.html', {
