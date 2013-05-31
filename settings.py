@@ -126,6 +126,14 @@ INSTALLED_APPS = (
     'south',
 )
 
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = environ['GMAIL_USERNAME']
+EMAIL_HOST_PASSWORD = environ['GMAIL_PASSWORD']
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'andromeda.yelton@gmail.com'
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
